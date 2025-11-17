@@ -24,33 +24,36 @@ function getHumanChoice(){
 }
 
 function playRound(humanChoice, computerChoice) {
+    const scoreboard = document.getElementById("scoreboard");
+    const choices = document.getElementById("choices");
+    let message = ""
+
     if(humanChoice == "rock" && computerChoice == "scissors") {
-        console.log(`You win! ${humanChoice} beats ${computerChoice}!`);
+        message = `You win! ${humanChoice} beats ${computerChoice}!`;
         humanScore += 1;
-        return;
     }
 
     else if(humanChoice == "paper" && computerChoice == "rock") {
-        console.log(`You win! ${humanChoice} beats ${computerChoice}!`);
+        message = `You win! ${humanChoice} beats ${computerChoice}!`;
         humanScore += 1;
-        return;
     }
 
     else if(humanChoice == "scissors" && computerChoice == "paper") {
-        console.log(`You win! ${humanChoice} beats ${computerChoice}!`);
+        message = `You win! ${humanChoice} beats ${computerChoice}!`;
         humanScore += 1;
-        return;
     }
 
     else if (humanChoice == computerChoice) {
-        console.log("Tie game!");
-        return;
+        message = "Tie game!";
     }
     else {
-        console.log(`You lose! ${computerChoice} beats ${humanChoice}!`)
+        message = `You lose! ${computerChoice} beats ${humanChoice}!`;
         computerScore += 1;
-        return;
     }
+
+    choices.innerHTML = `You chose: <b>${humanChoice}</b>, and the computer chose: <b>${computerChoice}</b>.<br>${message}`
+    scoreboard.innerHTML = `Human Score: ${humanScore}<br>Computer Score: ${computerScore}`
+    return;
 }
 
 function playGame(){
@@ -85,6 +88,4 @@ function playGame(){
         computerSelection = getComputerChoice();
         playRound(humanSelection, computerSelection);
     })
-    
-    console.log(`Human score: ${humanScore} vs Computer score: ${computerScore}`);
 }
