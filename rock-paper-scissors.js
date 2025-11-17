@@ -56,12 +56,35 @@ function playRound(humanChoice, computerChoice) {
 function playGame(){
     let humanSelection;
     let computerSelection;
-    
-    for(let round = 0; round < 5; round++) {
-        humanSelection = getHumanChoice();
+
+    const rockBtn = document.createElement("button");
+    const paperBtn = document.createElement("button");
+    const scissorBtn = document.createElement("button");
+
+    rockBtn.textContent = "Rock";
+    paperBtn.textContent = "Paper";
+    scissorBtn.textContent = "Scissors";
+
+    document.body.appendChild(rockBtn);
+    document.body.appendChild(paperBtn);
+    document.body.appendChild(scissorBtn);
+
+
+    rockBtn.addEventListener('click', function(event) {
+        humanSelection = 'rock';
         computerSelection = getComputerChoice();
         playRound(humanSelection, computerSelection);
-    }
-
+    })
+    paperBtn.addEventListener('click', function(event) {
+        humanSelection = 'paper'
+        computerSelection = getComputerChoice();
+        playRound(humanSelection, computerSelection);
+    })
+    scissorBtn.addEventListener('click', function(event) {
+        humanSelection = 'scissors'
+        computerSelection = getComputerChoice();
+        playRound(humanSelection, computerSelection);
+    })
+    
     console.log(`Human score: ${humanScore} vs Computer score: ${computerScore}`);
 }
